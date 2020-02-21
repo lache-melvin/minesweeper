@@ -1,6 +1,6 @@
 html, body {
   height: 100%;
-  font-family: 'Open Sans', sans-serif
+  font-family: 'Lacquer', sans-serif;
 }
 
 body {
@@ -8,6 +8,7 @@ body {
   align-items: center;
   justify-content: flex-center;
   flex-direction: column;
+  background-color: rgb(227, 252, 201);
 }
 
 #message, #notes {
@@ -27,7 +28,7 @@ body {
 
 .board div {
   color: green;
-  font-size: 2rem;
+  font-size: 2.5rem;
   width: 75px;
   height: 75px;
   border: 1px #ccc dotted;
@@ -48,13 +49,44 @@ div.mine, div.mine:hover {
 }
 
 div.hidden {
-  background: #eee;
+  background: rgb(186, 235, 130);
 }
 
 div.hidden:hover {
-  background: #ccc;
+  background: rgb(156, 199, 106);
 }
 
 div.marked, div.marked:hover {
-  background: no-repeat center/60% url("images/mark.svg") deepskyblue;
+  background: no-repeat center/60% url("images/mark.svg") rgb(245, 182, 130);
+}
+
+
+button {
+  font-family: 'Lacquer', sans-serif;
+  font-size: 2em;
+  margin: 10px;
+  margin-top: 0px;
+  padding: 5px;
+  background: none;
+  background-color: rgb(157, 223, 250);
+  border: 1px dotted rgba(16, 39, 48, 0.205);
+  border-radius: 7px;
+}
+
+button:active {
+  background-color: rgb(114, 191, 221);
+}
+
+#reset {
+  background-color: rgb(164, 152, 236);
+}
+button#reset:active {
+  background-color: rgb(137, 123, 216);
+}
+
+#userControls {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
 }
