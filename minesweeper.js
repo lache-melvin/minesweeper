@@ -3,111 +3,46 @@ document.addEventListener('DOMContentLoaded', startGame)
 // Define your `board` object here!
 var board = {
   cells: [
-    {
-      row: 1,
-      col: 1,
-      isMine: false,
-      hidden: true
-    }, 
-    {
-      row: 1,
-      col: 2,
-      isMine: false,
-      hidden: true
-    }, 
-    {
-      row: 1,
-      col: 3,
-      isMine: false,
-      hidden: true
-    }, 
-    {
-      row: 1,
-      col: 4,
-      isMine: false,
-      hidden: true
-    }, 
-    {
-      row: 2,
-      col: 1,
-      isMine: false,
-      hidden: true
-    }, 
-    {
-      row: 2,
-      col: 2,
-      isMine: false,
-      hidden: true
-    }, 
-    {
-      row: 2,
-      col: 3,
-      isMine: false,
-      hidden: true
-    }, 
-    {
-      row: 2,
-      col: 4,
-      isMine: false,
-      hidden: true
-    }, 
-    {
-      row: 3,
-      col: 1,
-      isMine: false,
-      hidden: true
-    }, 
-    {
-      row: 3,
-      col: 2,
-      isMine: false,
-      hidden: true
-    }, 
-    {
-      row: 3,
-      col: 3,
-      isMine: false,
-      hidden: true
-    }, 
-    {
-      row: 3,
-      col: 4,
-      isMine: false,
-      hidden: true
-    }, 
-    {
-      row: 4,
-      col: 1,
-      isMine: false,
-      hidden: true
-    }, 
-    {
-      row: 4,
-      col: 2,
-      isMine: false,
-      hidden: true
-    }, 
-    {
-      row: 4,
-      col: 3,
-      isMine: false,
-      hidden: true
-    }, 
-    {
-      row: 4,
-      col: 4,
-      isMine: false,
-      hidden: true
-    }]
+    {row: 0, col: 0, isMine: false, hidden: true}, 
+    {row: 1, col: 0, isMine: false, hidden: true}, 
+    {row: 2, col: 0, isMine: true, hidden: true}, 
+    {row: 3, col: 0, isMine: false, hidden: true},
+    {row: 4, col: 0, isMine: false, hidden: true}, 
+    {row: 0, col: 1, isMine: false, hidden: true}, 
+    {row: 1, col: 1, isMine: true, hidden: true}, 
+    {row: 2, col: 1, isMine: false, hidden: true},
+    {row: 3, col: 1, isMine: false, hidden: true},
+    {row: 4, col: 1, isMine: true, hidden: true}, 
+    {row: 0, col: 2, isMine: false, hidden: true}, 
+    {row: 1, col: 2, isMine: true, hidden: true}, 
+    {row: 2, col: 2, isMine: false, hidden: true}, 
+    {row: 3, col: 2, isMine: true, hidden: true},
+    {row: 4, col: 2, isMine: false, hidden: true}, 
+    {row: 0, col: 3, isMine: false, hidden: true}, 
+    {row: 1, col: 3, isMine: false, hidden: true}, 
+    {row: 2, col: 3, isMine: true, hidden: true},
+    {row: 3, col: 3, isMine: false, hidden: true},
+    {row: 4, col: 3, isMine: false, hidden: true}, 
+    {row: 0, col: 4, isMine: false, hidden: true}, 
+    {row: 1, col: 4, isMine: false, hidden: true}, 
+    {row: 2, col: 4, isMine: true, hidden: true},
+    {row: 3, col: 4, isMine: false, hidden: true},
+    {row: 4, col: 4, isMine: false, hidden: true}
+  ]
 }
 
 function startGame () {
   // Don't remove this function call: it makes the game work!
-  // for (i = 0; i < board.cells.length; i++) {
-  //   board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
-  // }
+  for (var i = 0; i < board.cells.length; i++) {
+    board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
+
+  }
   lib.initBoard()
 }
+// for(var i = 0; i < board.cells.length; i ++){
+//   surroundingMines = countSurroundingMines(board.cells[i])
+//   board.cells[i].surroundingMines = surroundingMines
+// }
 
 // Define this function to look for a win condition:
 //
@@ -129,5 +64,14 @@ function checkForWin () {
 // It will return cell objects in an array. You should loop through 
 // them, counting the number of times `cell.isMine` is true.
 function countSurroundingMines (cell) {
+  var count = 0
+  var surrounding = lib.getSurroundingCells(cell['row'], cell['col'])
+  
+  for (var i = 0; i < surrounding.length; i++) {
+    if (surrounding[i].isMine == true) {
+      count += 1 
+    }
+  }
+  return count
 }
 
