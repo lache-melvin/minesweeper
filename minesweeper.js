@@ -2,12 +2,12 @@ document.addEventListener('DOMContentLoaded', startGame)
 
 var board = {}
 
-function createBoard () {
+function createBoard (num) {
   board.cells = []
-  for (var i = 0; i < 25; i++) {
+  for (var i = 0; i < num*num; i++) {
     board.cells.push({})
-    board.cells[i].row = i % 5;   //numbers rows 0-4 (repeats 5x)
-    board.cells[i].col = Math.floor(i/5);     //numbers cols 5x0, 5x1...
+    board.cells[i].row = i % num;   //numbers rows 0-4 (repeats 5x)
+    board.cells[i].col = Math.floor(i/num);     //numbers cols 5x0, 5x1...
     board.cells[i].isMine = Math.random() < 0.4;   //random true/false generator
     board.cells[i].hidden = true;
   }
@@ -19,7 +19,19 @@ function createBoard () {
 
 
  function startGame () {
-  createBoard()
+  createBoard(5)
+  bindEventListeners()
+  showRemainingMines()
+ 
+  for (var i = 0; i < board.cells.length; i++) {
+    board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
+  }
+  lib.initBoard()
+}
+
+function restartGame (num) {
+  var size = num
+  createBoard(size)
   bindEventListeners()
   showRemainingMines()
  
@@ -65,14 +77,43 @@ function bindEventListeners () {
   document.getElementById('reset').addEventListener("click", boardReset)
   document.addEventListener("contextmenu", showRemainingMines)
   document.getElementById('minesLeftToggler').addEventListener('click', toggleRemainingMines)
+  document.getElementById('3x3').addEventListener("click", boardReset3)
+  document.getElementById('4x4').addEventListener("click", boardReset4)
+  document.getElementById('5x5').addEventListener("click", boardReset5)
+  document.getElementById('6x6').addEventListener("click", boardReset6)
   
 }
 
-//clears board and creates a new random one
-function boardReset () {
+//clears board and creates a new random one at selecter size
+function boardReset3 () {
   document.getElementsByClassName('board')[0].innerHTML = "";
-  startGame();
+  restartGame(3);
 }
+function boardReset4 () {
+  document.getElementsByClassName('board')[0].innerHTML = "";
+  restartGame(4);
+}
+function boardReset5 () {
+  document.getElementsByClassName('board')[0].innerHTML = "";
+  restartGame(5);
+}
+function boardReset6 () {
+  document.getElementsByClassName('board')[0].innerHTML = "";
+  restartGame(6);
+}
+
+//clears board and creates new one based on size of current board
+function boardReset () {
+  var num = Math.sqrt(board.cells.length)
+  document.getElementsByClassName('board')[0].innerHTML = "";
+  restartGame(num);
+}
+
+
+
+
+
+
 
 
 //adds a message to top of screen with number of mines left to flag
