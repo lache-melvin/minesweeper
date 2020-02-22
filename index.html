@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Minesweeper</title>
+    <link href="https://fonts.googleapis.com/css?family=Lacquer&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="minesweeper.css">
     <script src="lib/tests.js"></script>
     <script src="lib/lib.js"></script>
@@ -10,6 +11,22 @@
   <body>
     <div id="message"></div>
     <div id="notes"></div>
+    <div id="bombsRemaining"></div>
     <div class="board"></div>
+    <div id="userControls">
+      <div id="sizeSelectors">
+        <br>
+        <button id="3x3">3 x 3</button>
+        <br>
+        <button id="4x4">4 x 4</button>
+        <br>
+        <button id="5x5">5 x 5</button>
+        <br>
+        <button id="6x6">6 x 6</button>
+      </div>
+      <div id="resetDiv">
+        <button id="reset">Reset</button>
+      </div>
+    </div>
   </body>
 </html>

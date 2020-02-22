@@ -13,15 +13,15 @@ function createBoard () {
   }
 }
 
-createBoard()
-console.log(board)
+
 
 
 
 
  function startGame () {
   // Don't remove this function call: it makes the game work!
- 
+  createBoard()
+  addResetListener()
  
   document.addEventListener("click", checkForWin)
   document.addEventListener("contextmenu", checkForWin)
@@ -85,4 +85,11 @@ function countSurroundingMines (cell) {
 
 
 }
+function addResetListener () {
+  document.getElementById('reset').addEventListener("click", boardReset)
+}
 
+function boardReset () {
+  document.getElementsByClassName('board')[0].innerHTML = "";
+  startGame();
+}

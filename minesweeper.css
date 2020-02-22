@@ -79,6 +79,8 @@ button:active {
 
 #reset {
   background-color: rgb(164, 152, 236);
+  padding: 10px;
+  font-size: 3em;
 }
 button#reset:active {
   background-color: rgb(137, 123, 216);
