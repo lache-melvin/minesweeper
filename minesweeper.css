@@ -8,8 +8,21 @@ body {
   align-items: center;
   justify-content: flex-center;
   flex-direction: column;
-  background-color: rgb(227, 252, 201);
+  background-image: url(images/ekapanova120100053.jpg);
 }
+.container {
+  background-color: rgb(219, 241, 193);
+  padding-left: 200px;
+  padding-right: 200px;
+  padding-bottom: 30px;
+  border-radius: 15px;
+  box-shadow: rgba(95, 114, 73, 0.616) 2px 2px 2px 2px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-center;
+  flex-direction: column;
+}
+
 
 #message, #notes {
   display: flex;
@@ -54,7 +67,7 @@ div.mine, div.mine:hover {
 }
 
 div.hidden {
-  background: rgb(186, 235, 130);
+  background: rgb(180, 233, 120);
 }
 
 div.hidden:hover {
@@ -74,13 +87,13 @@ button {
   padding: 5px;
   width: 100px;
   background: none;
-  background-color: rgb(157, 223, 250);
+  background-color: rgb(180, 218, 233);
   border: 1px dotted rgba(16, 39, 48, 0.205);
   border-radius: 7px;
 }
 
 button:active {
-  background-color: rgb(114, 191, 221);
+  background-color: rgb(135, 181, 201);
 }
 
 #minesLeftToggler {
@@ -106,4 +119,21 @@ button#reset:active {
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2em;
+  margin: 10px;
+  margin-top: 0px;
+  padding: 5px;
+  width: 100px;
+  background: none;
+  background-color: rgb(180, 218, 233);
+  border: 1px dotted rgba(16, 39, 48, 0.205);
+  border-radius: 7px;
+}
+a:active {
+  background-color: rgb(135, 181, 201);
 }
