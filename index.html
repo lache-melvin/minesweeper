@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Minesweeper</title>
-    <link href="https://fonts.googleapis.com/css?family=Lacquer&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">    
     <link rel="stylesheet" href="minesweeper.css">
     <script src="lib/tests.js"></script>
     <script src="lib/lib.js"></script>
@@ -11,7 +11,10 @@
   <body>
     <div id="message"></div>
     <div id="notes"></div>
-    <div id="bombsRemaining"></div>
+    <div>
+      <p id="bombsRemaining"></p>
+      <button id="minesLeftToggler">Toggle remaining mines counter</button>
+    </div>
     <div class="board"></div>
     <div id="userControls">
       <div id="sizeSelectors">

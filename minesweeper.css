@@ -1,6 +1,6 @@
 html, body {
   height: 100%;
-  font-family: 'Lacquer', sans-serif;
+  font-family: 'Indie Flower', sans-serif;
 }
 
 body {
@@ -18,7 +18,12 @@ body {
 }
 
 #message {
+  font-size: 2.5rem;
+}
+
+#bombsRemaining {
   font-size: 1.5rem;
+  text-align: center;
 }
 
 .board {
@@ -62,11 +67,12 @@ div.marked, div.marked:hover {
 
 
 button {
-  font-family: 'Lacquer', sans-serif;
+  font-family: 'Indie Flower', sans-serif;
   font-size: 2em;
   margin: 10px;
   margin-top: 0px;
   padding: 5px;
+  width: 100px;
   background: none;
   background-color: rgb(157, 223, 250);
   border: 1px dotted rgba(16, 39, 48, 0.205);
@@ -77,9 +83,18 @@ button:active {
   background-color: rgb(114, 191, 221);
 }
 
+#minesLeftToggler {
+  font-size: 1em;
+  width: 250px;
+}
+.remainingMines {
+  display: none;
+}
+
 #reset {
   background-color: rgb(164, 152, 236);
   padding: 10px;
+  width: 160px;
   font-size: 3em;
 }
 button#reset:active {
