@@ -1,6 +1,6 @@
 html, body {
   height: 100%;
-  font-family: 'Open Sans', sans-serif
+  font-family: 'Indie Flower', sans-serif;
 }
 
 body {
@@ -8,7 +8,21 @@ body {
   align-items: center;
   justify-content: flex-center;
   flex-direction: column;
+  background-image: url(images/ekapanova120100053.jpg);
 }
+.container {
+  background-color: rgb(219, 241, 193);
+  padding-left: 200px;
+  padding-right: 200px;
+  padding-bottom: 30px;
+  border-radius: 15px;
+  box-shadow: rgba(95, 114, 73, 0.616) 2px 2px 2px 2px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-center;
+  flex-direction: column;
+}
+
 
 #message, #notes {
   display: flex;
@@ -17,7 +31,12 @@ body {
 }
 
 #message {
+  font-size: 2.5rem;
+}
+
+#bombsRemaining {
   font-size: 1.5rem;
+  text-align: center;
 }
 
 .board {
@@ -27,7 +46,7 @@ body {
 
 .board div {
   color: green;
-  font-size: 2rem;
+  font-size: 2.5rem;
   width: 75px;
   height: 75px;
   border: 1px #ccc dotted;
@@ -48,13 +67,73 @@ div.mine, div.mine:hover {
 }
 
 div.hidden {
-  background: #eee;
+  background: rgb(180, 233, 120);
 }
 
 div.hidden:hover {
-  background: #ccc;
+  background: rgb(156, 199, 106);
 }
 
 div.marked, div.marked:hover {
-  background: no-repeat center/60% url("images/mark.svg") deepskyblue;
+  background: no-repeat center/60% url("images/mark.svg") rgb(245, 182, 130);
+}
+
+
+button {
+  font-family: 'Indie Flower', sans-serif;
+  font-size: 2em;
+  margin: 10px;
+  margin-top: 0px;
+  padding: 5px;
+  width: 100px;
+  background: none;
+  background-color: rgb(180, 218, 233);
+  border: 1px dotted rgba(16, 39, 48, 0.205);
+  border-radius: 7px;
+}
+
+button:active {
+  background-color: rgb(135, 181, 201);
+}
+
+#minesLeftToggler {
+  font-size: 1em;
+  width: 250px;
+}
+.remainingMines {
+  display: none;
+}
+
+#reset {
+  background-color: rgb(164, 152, 236);
+  padding: 10px;
+  width: 160px;
+  font-size: 3em;
+}
+button#reset:active {
+  background-color: rgb(137, 123, 216);
+}
+
+#userControls {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2em;
+  margin: 10px;
+  margin-top: 0px;
+  padding: 5px;
+  width: 100px;
+  background: none;
+  background-color: rgb(180, 218, 233);
+  border: 1px dotted rgba(16, 39, 48, 0.205);
+  border-radius: 7px;
+}
+a:active {
+  background-color: rgb(135, 181, 201);
 }
