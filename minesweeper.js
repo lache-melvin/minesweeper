@@ -13,27 +13,15 @@ function createBoard (num) {
   }
 }
 
-
-
-
-
+var boardSize = 5;
 
  function startGame () {
-  createBoard(5)
+  createBoard(boardSize)
   bindEventListeners()
+  totalMines()
   showRemainingMines()
- 
-  for (var i = 0; i < board.cells.length; i++) {
-    board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
-  }
-  lib.initBoard()
-}
+  
 
-function restartGame (num) {
-  var size = num
-  createBoard(size)
-  bindEventListeners()
-  showRemainingMines()
  
   for (var i = 0; i < board.cells.length; i++) {
     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
@@ -87,26 +75,30 @@ function bindEventListeners () {
 //clears board and creates a new random one at selecter size
 function boardReset3 () {
   document.getElementsByClassName('board')[0].innerHTML = "";
-  restartGame(3);
+  boardSize = 3;
+  startGame();
 }
 function boardReset4 () {
   document.getElementsByClassName('board')[0].innerHTML = "";
-  restartGame(4);
+  boardSize = 4;
+  startGame();
 }
 function boardReset5 () {
   document.getElementsByClassName('board')[0].innerHTML = "";
-  restartGame(5);
+  boardSize = 5;
+  startGame();
 }
 function boardReset6 () {
   document.getElementsByClassName('board')[0].innerHTML = "";
-  restartGame(6);
+  boardSize = 6;
+  startGame();
 }
 
 //clears board and creates new one based on size of current board
 function boardReset () {
-  var num = Math.sqrt(board.cells.length)
+  boardSize = Math.sqrt(board.cells.length)
   document.getElementsByClassName('board')[0].innerHTML = "";
-  restartGame(num);
+  startGame();
 }
 
 
@@ -115,6 +107,19 @@ function boardReset () {
 
 
 
+
+//show total mines in game
+function totalMines() {
+  var cellsWithMines = board.cells.filter (cell => {
+    return cell.isMine 
+  }).length
+  console.log(cellsWithMines)
+  if (cellsWithMines > 1) {
+    document.getElementById('totalBombs').innerHTML =  "There are " + cellsWithMines + " mines"
+  } else {
+    document.getElementById("totalBombs").innerHTML = "why"
+  }
+}
 
 //adds a message to top of screen with number of mines left to flag
 function showRemainingMines() {
@@ -125,7 +130,7 @@ function showRemainingMines() {
     return !cell.isMarked
   }).length
   if (unmarkedMines > 1) {
-    document.getElementById('bombsRemaining').innerHTML =  unmarkedMines + " mines remaining"
+    document.getElementById('bombsRemaining').innerHTML = ", and you have " + unmarkedMines + " left to find."
   }
   else if (unmarkedMines == 1) {
     document.getElementById('bombsRemaining').innerHTML =  "1 mine remaining"
