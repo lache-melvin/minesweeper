@@ -1,5 +1,21 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
+var boardSize = 5;
+
+ function startGame () {
+  createBoard(boardSize)
+  bindEventListeners()
+  totalMines()
+  showRemainingMines()
+  
+
+ 
+  for (var i = 0; i < board.cells.length; i++) {
+    board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
+  }
+  lib.initBoard()
+}
+
 var board = {}
 
 function createBoard (num) {
@@ -15,31 +31,84 @@ function createBoard (num) {
 
 
 
-
-
-
- function startGame () {
-  createBoard(5)
-  bindEventListeners()
-  showRemainingMines()
- 
-  for (var i = 0; i < board.cells.length; i++) {
-    board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
-  }
-  lib.initBoard()
+function bindEventListeners () {
+  document.addEventListener("click", checkForWin)
+  document.addEventListener("contextmenu", checkForWin)
+  document.addEventListener("contextmenu", showRemainingMines)
+  document.getElementById('minesLeftToggler').addEventListener('click', toggleRemainingMines)
+  document.getElementById('reset').addEventListener("click", boardReset)
+  document.getElementById('3').addEventListener("click", boardResize)
+  document.getElementById('4').addEventListener("click", boardResize)
+  document.getElementById('5').addEventListener("click", boardResize)
+  document.getElementById('6').addEventListener("click", boardResize)
 }
 
-function restartGame (num) {
-  var size = num
-  createBoard(size)
-  bindEventListeners()
-  showRemainingMines()
- 
-  for (var i = 0; i < board.cells.length; i++) {
-    board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
+
+
+//counts number of mines surrounding a given cell
+function countSurroundingMines (cell) {
+  var count = 0
+  var surrounding = lib.getSurroundingCells(cell['row'], cell['col'])
+  for (var i = 0; i < surrounding.length; i++) {
+    if (surrounding[i].isMine == true) {
+      count++ 
+    }
   }
-  lib.initBoard()
+  return count
 }
+
+
+//clears board and creates a new random one at selected size
+function boardResize(event) {
+  document.getElementsByClassName('board')[0].innerHTML = "";
+  boardSize = parseInt(event.target.id);
+  startGame();
+}
+
+
+//clears board and creates new one based on size of current board
+function boardReset () {
+  boardSize = Math.sqrt(board.cells.length)
+  document.getElementsByClassName('board')[0].innerHTML = "";
+  startGame();
+}
+
+
+
+//show total mines in game
+function totalMines() {
+  var cellsWithMines = board.cells.filter (cell => {
+    return cell.isMine 
+  }).length
+  if (cellsWithMines > 1) {
+    document.getElementById('totalBombs').innerHTML =  "There are " + cellsWithMines + " mines"
+  } else {
+    document.getElementById("totalBombs").innerHTML = "why"
+  }
+}
+
+//shows number of mines left to flag
+function showRemainingMines() {
+  var cellsWithMines = board.cells.filter (cell => {
+    return cell.isMine 
+  })
+  var unmarkedMines = cellsWithMines.filter (cell => {
+    return !cell.isMarked
+  }).length
+  if (unmarkedMines > 1) {
+    document.getElementById('bombsRemaining').innerHTML = ", and you have " + unmarkedMines + " left to find."
+  }
+  else if (unmarkedMines == 1) {
+    document.getElementById('bombsRemaining').innerHTML =  "1 mine remaining"
+  } else {
+    document.getElementById('bombsRemaining').innerHTML =  "0 mines remaining - you did it!"
+  }
+}
+
+function toggleRemainingMines() {
+  document.getElementById('bombsRemaining').classList.toggle('remainingMines')
+}
+
 
 //checks after each click if the player has won the game - if yes displays win message
 function checkForWin () {
@@ -57,87 +126,5 @@ function checkForWin () {
   }
   }) 
 }
-
-//counts number of mines surrounding a given cell
-function countSurroundingMines (cell) {
-  var count = 0
-  var surrounding = lib.getSurroundingCells(cell['row'], cell['col'])
-  for (var i = 0; i < surrounding.length; i++) {
-    if (surrounding[i].isMine == true) {
-      count++ 
-    }
-  }
-  return count
-}
-
-
-function bindEventListeners () {
-  document.addEventListener("click", checkForWin)
-  document.addEventListener("contextmenu", checkForWin)
-  document.getElementById('reset').addEventListener("click", boardReset)
-  document.addEventListener("contextmenu", showRemainingMines)
-  document.getElementById('minesLeftToggler').addEventListener('click', toggleRemainingMines)
-  document.getElementById('3x3').addEventListener("click", boardReset3)
-  document.getElementById('4x4').addEventListener("click", boardReset4)
-  document.getElementById('5x5').addEventListener("click", boardReset5)
-  document.getElementById('6x6').addEventListener("click", boardReset6)
-  
-}
-
-//clears board and creates a new random one at selecter size
-function boardReset3 () {
-  document.getElementsByClassName('board')[0].innerHTML = "";
-  restartGame(3);
-}
-function boardReset4 () {
-  document.getElementsByClassName('board')[0].innerHTML = "";
-  restartGame(4);
-}
-function boardReset5 () {
-  document.getElementsByClassName('board')[0].innerHTML = "";
-  restartGame(5);
-}
-function boardReset6 () {
-  document.getElementsByClassName('board')[0].innerHTML = "";
-  restartGame(6);
-}
-
-//clears board and creates new one based on size of current board
-function boardReset () {
-  var num = Math.sqrt(board.cells.length)
-  document.getElementsByClassName('board')[0].innerHTML = "";
-  restartGame(num);
-}
-
-
-
-
-
-
-
-
-//adds a message to top of screen with number of mines left to flag
-function showRemainingMines() {
-  var cellsWithMines = board.cells.filter (cell => {
-    return cell.isMine 
-  })
-  var unmarkedMines = cellsWithMines.filter (cell => {
-    return !cell.isMarked
-  }).length
-  if (unmarkedMines > 1) {
-    document.getElementById('bombsRemaining').innerHTML =  unmarkedMines + " mines remaining"
-  }
-  else if (unmarkedMines == 1) {
-    document.getElementById('bombsRemaining').innerHTML =  "1 mine remaining"
-  } else {
-    document.getElementById('bombsRemaining').innerHTML =  "0 mines remaining - you did it!"
-  }
-}
-
-function toggleRemainingMines() {
-  document.getElementById('bombsRemaining').classList.toggle('remainingMines')
-}
-
-
 
 
