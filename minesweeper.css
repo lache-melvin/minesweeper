@@ -50,7 +50,7 @@ body {
   height: 75px;
   border: 1px #ccc dotted;
   border-radius: 10%;
-  background-color: white;
+  background-color: rgb(241, 252, 229);
   margin: 3px;
   display: flex;
   align-items: center;
@@ -58,19 +58,19 @@ body {
 }
 
 .board div:hover {
-  background-color: white;
+  background-color: rgb(237, 247, 232);
 }
 
 div.mine, div.mine:hover {
-  background: no-repeat center/60% url("images/bomb.svg") crimson;
+  background: no-repeat center/130% url("images/doggodied.jpg") crimson;
 }
 
 div.hidden {
-  background: rgb(180, 233, 120);
+  background: no-repeat center/90% url("images/happy\ doggo.png") rgb(181, 221, 134);
 }
 
 div.hidden:hover {
-  background: rgb(156, 199, 106);
+  background: no-repeat center/90% url("images/happy\ doggo.png") rgb(156, 199, 106);
 }
 
 div.marked, div.marked:hover {
