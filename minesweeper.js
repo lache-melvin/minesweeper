@@ -81,7 +81,7 @@ function totalMines() {
     return cell.isMine 
   }).length
   if (cellsWithMines > 1) {
-    document.getElementById('totalBombs').innerHTML =  "There are " + cellsWithMines + " mines"
+    document.getElementById('totalBombs').innerHTML =  "There are " + cellsWithMines + " hidden mines"
   } else {
     document.getElementById("totalBombs").innerHTML = "why"
   }
@@ -95,13 +95,10 @@ function showRemainingMines() {
   var unmarkedMines = cellsWithMines.filter (cell => {
     return !cell.isMarked
   }).length
-  if (unmarkedMines > 1) {
+  if (unmarkedMines >= 1) {
     document.getElementById('bombsRemaining').innerHTML = ", and you have " + unmarkedMines + " left to find."
-  }
-  else if (unmarkedMines == 1) {
-    document.getElementById('bombsRemaining').innerHTML =  "1 mine remaining"
   } else {
-    document.getElementById('bombsRemaining').innerHTML =  "0 mines remaining - you did it!"
+    document.getElementById('bombsRemaining').innerHTML =  ", and you found them all! Nice work!"
   }
 }
 
