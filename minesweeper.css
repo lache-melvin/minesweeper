@@ -8,13 +8,14 @@ body {
   align-items: center;
   justify-content: flex-center;
   flex-direction: column;
-  background-image: url(images/ekapanova120100053.jpg);
+  background-image: url(images/mud.jpg);
 }
 .container {
-  background-color: rgb(219, 241, 193);
-  padding-left: 200px;
-  padding-right: 200px;
+  background-color: rgb(202, 216, 179);
+  max-width: 1200px;
+  padding: 20px;
   padding-bottom: 30px;
+  margin: 20px;
   border-radius: 15px;
   box-shadow: rgba(95, 114, 73, 0.616) 2px 2px 2px 2px;
   display: flex;
@@ -66,11 +67,11 @@ div.mine, div.mine:hover {
 }
 
 div.hidden {
-  background: no-repeat center/90% url("images/happy\ doggo.png") rgb(181, 221, 134);
+  background: no-repeat center/90% url("images/happy\ doggo.png") rgb(161, 202, 114);
 }
 
 div.hidden:hover {
-  background: no-repeat center/90% url("images/happy\ doggo.png") rgb(156, 199, 106);
+  background: no-repeat center/90% url("images/happy\ doggo.png") rgb(141, 185, 89);
 }
 
 div.marked, div.marked:hover {
@@ -107,7 +108,7 @@ button:active {
   
 }
 .remainingMines {
-  color: rgb(219, 241, 193);
+  color: rgb(202, 216, 179);
 }
 
 #reset {

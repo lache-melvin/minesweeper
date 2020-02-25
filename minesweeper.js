@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', startGame)
 
 var boardSize = 5;
 
- function startGame () {
+function startGame () {
   createBoard(boardSize)
   bindEventListeners()
   totalMines()
